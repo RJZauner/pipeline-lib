@@ -1,0 +1,40 @@
+name: Go test
+
+on:
+  workflow_call:
+    inputs: 
+      go_version:
+        type: string
+        default: "1.27"
+      test-args:
+        type: string
+        default: --race -covermode=atomic -coverprofile=coverage.out ./...
+      ubuntu_version:
+        type: string
+        default: "ubuntu-26.04"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ inputs.ubuntu_version }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version: ${{ inputs.go_version }}
+          cache: true
+
+      - name: Go testing
+        env: 
+          TEST_ARGS: ${{ inputs.test-args }}
+        run: go test $TEST_ARGS
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: coverage.out
+

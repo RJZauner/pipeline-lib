@@ -3,9 +3,9 @@ name: Go lint
 on:
   workflow_call:
     inputs:
-      go-version.file: 
+      go_version: 
         type: string
-        default: go.mod
+        default: "1.27"
       golangci-lint-version:
         type: string
         default: "v2.15"
@@ -24,12 +24,10 @@ jobs:
 
       - uses: actions/setup-go@v7
         with:
-          go-version-file: ${{ inputs.go-version-file }}
+          go-version: ${{ inputs.go_version }}
           cache: true
 
       - name: Go linting
-        env:
-          GOTOOLCHAIN: auto
         uses: golangci/golangci-lint-action@v9
         with:
           version: ${{ inputs.golangci-lint-action }}
