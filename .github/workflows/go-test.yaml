@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ inputs.ubuntu_version }}
     steps:
       - name: Checkout repository and setup Go toolchain
-        uses: ./actions/go-setup
+        uses: RJZauner/.github/pipeline-lib/actions/go-setup@v1
         with:
           go_version: ${{ inputs.go_version }}
 
