@@ -1,0 +1,33 @@
+name: Go lint
+
+on:
+  workflow_call:
+    inputs:
+      go-version.file: 
+        type: string
+        default: go.mod
+      golangci-lint-version:
+        type: string
+        default: "v2.15"
+      ubuntu_version:
+        type: string
+        default: "ubuntu-26.04"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ${{ inputs.ubuntu_version }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: ${{ inputs.go-version-file }}
+          cache: true
+
+      - name: Go linting
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: ${{ inputs.golangci-lint-action }}
