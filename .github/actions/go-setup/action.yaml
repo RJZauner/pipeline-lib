@@ -1,0 +1,21 @@
+name: Go checkout & setup
+
+inputs:
+  go_version:
+    required: false
+    default: "1.27"
+  cache:
+    required: false
+    default: "true"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+
+    - name: Setup Go toolchain
+      uses: actions/setup-go@v7
+      with:
+        go_version: ${{ inputs.go_version }}
+        cache: ${{ inputs.cache }}
