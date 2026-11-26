@@ -20,12 +20,10 @@ jobs:
   lint:
     runs-on: ${{ inputs.ubuntu_version }}
     steps:
-      - uses: actions/checkout@v7
-
-      - uses: actions/setup-go@v7
+      - name: Checkout repository and setup Go toolchain
+        uses: ./actions/go-setup
         with:
-          go-version: ${{ inputs.go_version }}
-          cache: true
+          go_version: ${{ inputs.go_version }}
 
       - name: Go linting
         uses: golangci/golangci-lint-action@v9
