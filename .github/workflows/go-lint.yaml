@@ -28,6 +28,8 @@ jobs:
           cache: true
 
       - name: Go linting
+        env:
+          GOTOOLCHAIN: auto
         uses: golangci/golangci-lint-action@v9
         with:
           version: ${{ inputs.golangci-lint-action }}
