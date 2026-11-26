@@ -6,7 +6,7 @@ on:
       go_version: 
         type: string
         default: "1.27"
-      golangci-lint-version:
+      golangci_lint_version:
         type: string
         default: "v2.15"
       ubuntu_version:
@@ -30,4 +30,4 @@ jobs:
       - name: Go linting
         uses: golangci/golangci-lint-action@v9
         with:
-          version: ${{ inputs.golangci-lint-action }}
+          version: ${{ inputs.golangci_lint_action }}

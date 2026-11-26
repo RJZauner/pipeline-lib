@@ -6,7 +6,7 @@ on:
       go_version:
         type: string
         default: "1.27"
-      test-args:
+      test_args:
         type: string
         default: --race -covermode=atomic -coverprofile=coverage.out ./...
       ubuntu_version:
@@ -29,7 +29,7 @@ jobs:
 
       - name: Go testing
         env: 
-          TEST_ARGS: ${{ inputs.test-args }}
+          TEST_ARGS: ${{ inputs.test_args }}
         run: go test $TEST_ARGS
 
       - name: Upload coverage
