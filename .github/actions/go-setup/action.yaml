@@ -17,5 +17,5 @@ runs:
     - name: Setup Go toolchain
       uses: actions/setup-go@v7
       with:
-        go_version: ${{ inputs.go_version }}
+        go-version: ${{ inputs.go_version }}
         cache: ${{ inputs.cache }}
